@@ -22,7 +22,7 @@ public class Flight {
         return this.plane.getPlanetype();
     }
 
-    public int getPlaneCapacity() {
+    public int planeCapacity() {
         return this.plane.getCapacity();
     }
 
@@ -45,5 +45,14 @@ public class Flight {
 
     public int passengerCount() {
         return this.passengers.size();
+    }
+
+    public int spaceAvailable() {
+        return planeCapacity() - passengerCount();
+    }
+
+    public void bookPassengerOntoFlight(Passenger passenger) {
+        if (passengerCount() < planeCapacity())
+        this.passengers.add(passenger);
     }
 }

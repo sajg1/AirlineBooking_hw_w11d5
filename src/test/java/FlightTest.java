@@ -7,23 +7,30 @@ public class FlightTest {
 
     Flight flight;
     Plane plane;
+    Passenger passenger1;
+    Passenger passenger2;
+    Passenger passenger3;
 
     @Before
     public void before() {
-        plane = new Plane(PlaneType.AIRBUSA380);
-        flight = new Flight(plane, "F3456", Airport.EDI, Airport.NYC, "1400");
+        plane = new Plane(PlaneType.SKYTUTUT);
+        passenger1 = new Passenger("Steve", 1);
+        passenger2 = new Passenger("Roisin", 1);
+        passenger2 = new Passenger("Andrew", 2);
+
+        flight = new Flight(plane, "F3456", Airport.EDI, Airport.GLA, "1400");
     }
 
     @Test
     public void hasPlane() {
 
-        assertEquals(PlaneType.AIRBUSA380, flight.getPlane());
+        assertEquals(PlaneType.SKYTUTUT, flight.getPlane());
     }
 
     @Test
     public void hasAPlaneCapacity() {
 
-        assertEquals(100, flight.getPlaneCapacity());
+        assertEquals(2, flight.planeCapacity());
     }
 
     @Test
@@ -41,7 +48,7 @@ public class FlightTest {
     @Test
     public void hasArrivalAirport() {
 
-        assertEquals(Airport.NYC, flight.getArrAirport());
+        assertEquals(Airport.GLA, flight.getArrAirport());
     }
 
     @Test
@@ -54,5 +61,30 @@ public class FlightTest {
     public void passengerListStartsEmpty() {
 
         assertEquals(0, flight.passengerCount());
+    }
+
+    @Test
+    public void addAPassengerToFlight() {
+        flight.bookPassengerOntoFlight(passenger1);
+        assertEquals(1, flight.passengerCount());
+    }
+
+    @Test
+    public void canCheckAvailableSpaceOnFlight() {
+        assertEquals(2, flight.spaceAvailable());
+        flight.bookPassengerOntoFlight(passenger1);
+        assertEquals(1, flight.spaceAvailable());
+    }
+
+    @Test
+    public void cannotAddMorePassengersThanCapacity() {
+        assertEquals(2, flight.spaceAvailable());
+        flight.bookPassengerOntoFlight(passenger1);
+        assertEquals(1, flight.spaceAvailable());
+        flight.bookPassengerOntoFlight(passenger2);
+        assertEquals(0, flight.spaceAvailable());
+        flight.bookPassengerOntoFlight(passenger3);
+        assertEquals(2, flight.passengerCount());
+        assertEquals(0, flight.spaceAvailable());
     }
 }
