@@ -87,4 +87,18 @@ public class FlightTest {
         assertEquals(2, flight.passengerCount());
         assertEquals(0, flight.spaceAvailable());
     }
+
+    @Test
+    public void canSeeTotalBaggageWeightAllowed() {
+        assertEquals(50, flight.totalBaggageWeight());
+    }
+
+    @Test
+    public void canSeeIndividualBagWeight() {
+        assertEquals(25, flight.individualBagWeight());
+    }
+
+
+
+
 }

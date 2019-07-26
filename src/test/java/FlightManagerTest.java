@@ -15,10 +15,11 @@ public class FlightManagerTest {
     @Before
     public void before(){
         passenger1 = new Passenger("Steve", 1);
-        passenger1 = new Passenger("Roisin", 1);
-        passenger1 = new Passenger("Andrew", 2);
+        passenger2 = new Passenger("Roisin", 1);
+        passenger3 = new Passenger("Andrew", 2);
         plane = new Plane(PlaneType.SKYTUTUT);
         flight = new Flight(plane, "F3456", Airport.EDI, Airport.GLA, "1400");
+        flight.bookPassengerOntoFlight(passenger1);
         flightManager = new FlightManager(flight);
     }
 
@@ -51,4 +52,38 @@ public class FlightManagerTest {
     public void hasFlightCapacity() {
         assertEquals(2, flightManager.getFlightCapacity());
     }
+
+    @Test
+    public void hasTotalBaggageWeightForFlight() {
+        assertEquals(50, flightManager.getTotalBaggageWeight());
+    }
+
+    @Test
+    public void hasIndividualBaggageForEachPassenger() {
+        assertEquals(25, flightManager.getIndividualBagWeight());
+    }
+
+    @Test
+    public void canCountBookedPassengers() {
+        assertEquals(1, flightManager.countBookedPassengers());
+    }
+
+    @Test
+    public void checkBookedBaggageForAFlight() {
+        assertEquals(25, flightManager.bookedBaggageWeight());
+        flight.bookPassengerOntoFlight(passenger2);
+        assertEquals(50, flightManager.bookedBaggageWeight());
+
+    }
+
+    @Test
+    public void checkRemainingBaggageAllocationForFlight() {
+        assertEquals(25, flightManager.baggageWeightAllocationRemaining());
+        flight.bookPassengerOntoFlight(passenger2);
+        assertEquals(0, flightManager.baggageWeightAllocationRemaining());
+        flight.bookPassengerOntoFlight(passenger3);
+        assertEquals(0, flightManager.baggageWeightAllocationRemaining());
+        
+    }
 }
+

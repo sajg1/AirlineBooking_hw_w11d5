@@ -26,6 +26,9 @@ public class Flight {
         return this.plane.getCapacity();
     }
 
+    public ArrayList<Passenger> getPassengers() {
+        return new ArrayList<Passenger>(this.passengers);
+    }
 
     public String getFlightNo() {
         return this.flightNo;
@@ -54,5 +57,13 @@ public class Flight {
     public void bookPassengerOntoFlight(Passenger passenger) {
         if (passengerCount() < planeCapacity())
         this.passengers.add(passenger);
+    }
+
+    public int totalBaggageWeight() {
+        return this.plane.totalBaggageWeight();
+    }
+
+    public int individualBagWeight() {
+        return this.plane.individualBagWeight();
     }
 }

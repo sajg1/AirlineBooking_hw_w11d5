@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class FlightManager {
 
     private Flight flight;
@@ -29,4 +31,35 @@ public class FlightManager {
     public int getFlightCapacity() {
         return this.flight.planeCapacity();
     }
+
+    public int getTotalBaggageWeight() {
+        return this.flight.totalBaggageWeight();
+    }
+
+    public ArrayList<Passenger> bookedPassengers() {
+        return new ArrayList<Passenger>(this.flight.getPassengers());
+    }
+
+    public int countBookedPassengers() {
+        return bookedPassengers().size();
+    }
+
+    public int getIndividualBagWeight() {
+        return this.flight.individualBagWeight();
+    }
+
+    public int bookedBaggageWeight() {
+        int totalBaggageWeight = 0;
+        for (Passenger passenger : bookedPassengers()) {
+            totalBaggageWeight += getIndividualBagWeight();
+        }
+        return totalBaggageWeight;
+    }
+
+    public int baggageWeightAllocationRemaining() {
+        return getTotalBaggageWeight() - bookedBaggageWeight();
+    }
+
+
+
 }
