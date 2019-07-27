@@ -83,7 +83,7 @@ public class FlightManagerTest {
         assertEquals(0, flightManager.baggageWeightAllocationRemaining());
         flight.bookPassengerOntoFlight(passenger3);
         assertEquals(0, flightManager.baggageWeightAllocationRemaining());
-        
+
     }
 }
 

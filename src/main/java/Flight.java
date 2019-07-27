@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class Flight {
 
     private ArrayList<Passenger> passengers;
@@ -55,8 +56,18 @@ public class Flight {
     }
 
     public void bookPassengerOntoFlight(Passenger passenger) {
-        if (passengerCount() < planeCapacity())
-        this.passengers.add(passenger);
+        if (passengerCount() < planeCapacity()) {
+            this.passengers.add(passenger);
+            passenger.setOnFlight(true);
+        }
+    }
+
+    public void removeAllPassengersOnArrival() {
+        for (Passenger passenger : this.passengers) {
+            passenger.setOnFlight(false);
+        }
+        this.passengers.clear();
+
     }
 
     public int totalBaggageWeight() {

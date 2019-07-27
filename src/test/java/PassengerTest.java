@@ -21,4 +21,11 @@ public class PassengerTest {
     public void hasNoOfBags() {
         assertEquals(1, passenger1.getNoOfBags());
     }
+
+    @Test
+    public void isNotOnFlightAtStart() {
+        assertEquals( false, passenger1.isOnFlight());
+    }
 }
+
+
