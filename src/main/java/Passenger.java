@@ -2,13 +2,13 @@ public class Passenger {
 
     private String name;
     private int noOfBags;
-    private boolean onFlight;
+    private Flight onFlight;
     private int seatNumber;
 
     public Passenger(String name, int noOfBags) {
         this.name = name;
         this.noOfBags = noOfBags;
-        this.onFlight = false;
+        this.onFlight = null;
         this.seatNumber = 0;
     }
 
@@ -20,7 +20,7 @@ public class Passenger {
         return this.noOfBags;
     }
 
-    public boolean isOnFlight() {
+    public Flight isOnFlight() {
         return this.onFlight;
     }
 
@@ -28,7 +28,7 @@ public class Passenger {
         return this.seatNumber;
     }
 
-    public void setOnFlight(boolean onFlight) {
+    public void setOnFlight(Flight onFlight) {
         this.onFlight = onFlight;
     }
 

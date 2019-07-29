@@ -58,13 +58,14 @@ public class Flight {
     public void bookPassengerOntoFlight(Passenger passenger) {
         if (passengerCount() < planeCapacity()) {
             this.passengers.add(passenger);
-            passenger.setOnFlight(true);
+            passenger.setOnFlight(this);
+
         }
     }
 
     public void removeAllPassengersOnArrival() {
         for (Passenger passenger : this.passengers) {
-            passenger.setOnFlight(false);
+            passenger.setOnFlight(null);
         }
         this.passengers.clear();
 

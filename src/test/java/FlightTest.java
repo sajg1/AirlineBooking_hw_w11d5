@@ -67,17 +67,17 @@ public class FlightTest {
     public void addAPassengerToFlight() {
         flight.bookPassengerOntoFlight(passenger1);
         assertEquals(1, flight.passengerCount());
-        assertEquals(true, passenger1.isOnFlight());
+        assertEquals(flight, passenger1.isOnFlight());
     }
 
     @Test
     public void canRemovePassengerFromAFlight() {
         flight.bookPassengerOntoFlight(passenger1);
         assertEquals(1, flight.passengerCount());
-        assertEquals(true, passenger1.isOnFlight());
+        assertEquals(flight, passenger1.isOnFlight());
         flight.removeAllPassengersOnArrival();
         assertEquals(0, flight.passengerCount());
-        assertEquals(false, passenger1.isOnFlight());
+        assertEquals(null, passenger1.isOnFlight());
     }
 
     @Test
